@@ -1,4 +1,4 @@
-<div *ngIf="(authenticated); else login">
+<div *ngIf="(!noToken()); else login">
   <!-- HEADER MOBILE-->
   <header class="header-mobile d-block d-lg-none">
     <div class="header-mobile__bar">

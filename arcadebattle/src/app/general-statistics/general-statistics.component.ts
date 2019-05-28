@@ -10,17 +10,12 @@ import { Chart } from 'chart.js';
 export class GeneralStatisticsComponent implements OnInit {
 
   groupsCount = new Map();
-  groupsString: string;
+  games = new Map();
 
   constructor(private arcadeBattleService: ArcadebattleService){
   }
 
-  ngOnInit() {
-    this.groupsCount.set('Doctors', 0);
-    this.groupsCount.set('Patients', 0);
-    this.groupsCount.set('Admins', 0);
-    this.getAllPeople();
-
+  testFunc(testStr: string, gamesStr: string){
     let userStats;
     let topPlayedGames;
 
@@ -69,7 +64,7 @@ export class GeneralStatisticsComponent implements OnInit {
     }
 
     const canva2 = (<HTMLCanvasElement> document.getElementById('userStats'));
-    const ctx2 = canva.getContext('2d');
+    const ctx2 = canva2.getContext('2d');
 
     if(canva2) {
       canva2.height = 150;
@@ -121,10 +116,8 @@ export class GeneralStatisticsComponent implements OnInit {
 
     function getStats(){
       let temp: any;
-      temp = <HTMLElement> document.getElementById('groups_dict');
-      temp = temp.textContent
+      temp = testStr;
       temp = replaceAll(temp, '\'', '\"');
-      console.log(temp)
       let jsonData = JSON.parse(temp);
 
       userStats.data.labels = [];
@@ -137,8 +130,7 @@ export class GeneralStatisticsComponent implements OnInit {
 
       userStats.update();
 
-      temp = document.getElementById('games_dict').innerHTML;
-      temp = replaceAll(temp, '\'', '\"');
+      temp = gamesStr;
       jsonData = JSON.parse(temp);
 
       topPlayedGames.data.labels = [];
@@ -151,10 +143,25 @@ export class GeneralStatisticsComponent implements OnInit {
 
       topPlayedGames.update();
     }
-
   }
 
-  getAllPeople(): void {
+  ngOnInit() {
+    this.groupsCount.set('Doctors', 0);
+    this.groupsCount.set('Patients', 0);
+    this.groupsCount.set('Admins', 0);
+    this.getAllGamesPlayed();
+  }
+
+  getAllGamesPlayed(): void {
+    this.arcadeBattleService.games_played()
+        .subscribe(
+            json => {
+              this.getAllPeople(JSON.stringify(json.data));
+            }
+        );
+  }
+
+  getAllPeople(g: string): void {
     this.arcadeBattleService.all_people()
       .subscribe(
         json => {
@@ -170,7 +177,7 @@ export class GeneralStatisticsComponent implements OnInit {
             str += '\''+ key + '\': ' + value + ', ';
           });
           str = str.slice(0, -2) + '}';
-          this.groupsString = str;
+          this.testFunc(str, g);
         });
   }
 }

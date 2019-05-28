@@ -4,6 +4,7 @@ import {GeneralStatisticsComponent} from './general-statistics/general-statistic
 import {AppComponent} from './app.component';
 
 const routes: Routes = [
+  {path: '', component: GeneralStatisticsComponent},
   {path: 'general_statistics', component: GeneralStatisticsComponent},
 ];
 

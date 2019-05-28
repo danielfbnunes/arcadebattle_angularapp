@@ -16,7 +16,11 @@ export class User {
   styleUrls: ['./app.component.css']
 })
 
-export class AppComponent {
+export class AppComponent implements OnInit {
+
+  ngOnInit(): void {
+    localStorage.removeItem('token');
+  }
 
   // DEPOIS APAGAR INICIALIZAÇÃO
   username = 'doctor1@ua.pt';
@@ -27,6 +31,11 @@ export class AppComponent {
   authenticated = false;
 
   constructor(private arcadeBattleService: ArcadebattleService, private router: Router){
+  }
+
+  noToken(): boolean {
+    console.log((localStorage.getItem('token') == null));
+    return (localStorage.getItem('token') == null);
   }
 
   loginFunc(): void {
