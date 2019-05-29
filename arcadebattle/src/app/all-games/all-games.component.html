@@ -10,20 +10,19 @@
             <div class="card-body">
               <div class="row">
                 <!-- FAZER GAMES -->
-                <div *ngFor="let g in games" class="col-md-3">
+                <div *ngFor="let g of games" class="col-md-3">
                   <div class="card">
                     <div class="card-header"
                          style="text-align: center; background:#4272d7; color: #fff">
                       <strong class="card-title mb-3">{{ g.name }}</strong>
                     </div>
-                    <img class="card-img-top" src="data:image/png;base64, {{ g.photo_b64 }}";
-                         alt="Card image cap">
+                    <img class="card-img-top" [src]="getImagePath(g)" alt="Card image cap">
                     <div class="card-body">
                       <div class="card-text text-sm-center">
-                        <button type="button"
+                        <button #thisButton type="button"
                                 class="btn btn-sm btn-outline-primary video"
                                 data-toggle="modal" data-target="#modal"
-                                data-video="{{ g.preview_link }}" name="{{ g.name }}">
+                                (click)="videoClicked(thisButton, g)" name="{{ g.name }}">
                           <i class="fas fa-search-plus"></i> Preview
                         </button>
                       </div>
@@ -47,12 +46,12 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="modalLabel"></h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <button type="button" class="close" (click)="stopVideo(myIframe)" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body" style="padding:0px !important">
-        <iframe width="100%" height="360px" src="" frameborder="0" allowfullscreen></iframe>
+        <iframe #myIframe width="100%" height="360px" src="" frameborder="0" allowfullscreen></iframe>
       </div>
     </div>
   </div>

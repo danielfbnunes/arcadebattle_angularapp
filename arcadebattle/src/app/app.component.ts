@@ -29,7 +29,7 @@ export class AppComponent implements OnInit {
   authenticated = false;
 
   constructor(private arcadeBattleService: ArcadebattleService, private router: Router,
-              private sanitizer: DomSanitizer){
+              private sanitizer: DomSanitizer) {
   }
 
   ngOnInit(): void {
