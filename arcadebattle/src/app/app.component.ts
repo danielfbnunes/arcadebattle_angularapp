@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ArcadebattleService} from './arcadebattle.service';
 import {Router} from '@angular/router';
+import { DomSanitizer } from '@angular/platform-browser';
 
 export class User {
   userType: string;
@@ -18,19 +19,21 @@ export class User {
 
 export class AppComponent implements OnInit {
 
-  ngOnInit(): void {
-    localStorage.removeItem('token');
-  }
-
   // DEPOIS APAGAR INICIALIZAÇÃO
   username = 'doctor1@ua.pt';
   password = 'doctor1';
   // DEPOIS APAGAR INICIALIZAÇÃO
 
+  imagePath: any;
   userData = new User();
   authenticated = false;
 
-  constructor(private arcadeBattleService: ArcadebattleService, private router: Router){
+  constructor(private arcadeBattleService: ArcadebattleService, private router: Router,
+              private sanitizer: DomSanitizer){
+  }
+
+  ngOnInit(): void {
+    localStorage.removeItem('token');
   }
 
   noToken(): boolean {
@@ -44,11 +47,14 @@ export class AppComponent implements OnInit {
         data => {
                   if (data) {
                     localStorage.setItem('token', data.token);
+                    localStorage.setItem('userType', data.user_type);
                     this.userData.userType = data.user_type;
                     this.userData.firstName = data.first_name;
                     this.userData.lastName = data.last_name;
                     this.userData.email = data.email;
                     this.userData.photoB64 = data.photo_b64;
+                    this.imagePath = this.sanitizer.bypassSecurityTrustResourceUrl('data:image/jpg;base64,'
+                        + this.userData.photoB64);
                     localStorage.setItem('current_user', JSON.stringify(this.userData))
                     this.authenticated = true;
                   }

@@ -7,12 +7,18 @@ import { AppComponent } from './app.component';
 import { GeneralStatisticsComponent } from './general-statistics/general-statistics.component';
 import {ArcadebattleService} from './arcadebattle.service';
 import {HttpClientModule} from '@angular/common/http';
+import { AllDoctorsComponent } from './all-doctors/all-doctors.component';
+import { DoctorStatisticsComponent } from './doctor-statistics/doctor-statistics.component';
+import { AllGamesComponent } from './all-games/all-games.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    GeneralStatisticsComponent
+    GeneralStatisticsComponent,
+    AllDoctorsComponent,
+    DoctorStatisticsComponent,
+    AllGamesComponent
   ],
   imports: [
     BrowserModule,
