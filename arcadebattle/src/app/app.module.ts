@@ -10,6 +10,7 @@ import {HttpClientModule} from '@angular/common/http';
 import { AllDoctorsComponent } from './all-doctors/all-doctors.component';
 import { DoctorStatisticsComponent } from './doctor-statistics/doctor-statistics.component';
 import { AllGamesComponent } from './all-games/all-games.component';
+import { AddDoctorComponent } from './add-doctor/add-doctor.component';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { AllGamesComponent } from './all-games/all-games.component';
     GeneralStatisticsComponent,
     AllDoctorsComponent,
     DoctorStatisticsComponent,
-    AllGamesComponent
+    AllGamesComponent,
+    AddDoctorComponent
   ],
   imports: [
     BrowserModule,

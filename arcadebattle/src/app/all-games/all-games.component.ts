@@ -10,7 +10,6 @@ import {DomSanitizer} from '@angular/platform-browser';
 export class AllGamesComponent implements OnInit {
 
   games: object[];
-  imagePath: any;
 
   constructor(private arcadeBattleService: ArcadebattleService, private sanitizer: DomSanitizer) { }
 

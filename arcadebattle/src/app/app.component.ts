@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ArcadebattleService} from './arcadebattle.service';
 import {Router} from '@angular/router';
+import {ActivatedRoute} from "@angular/router";
 import { DomSanitizer } from '@angular/platform-browser';
 
 export class User {
@@ -25,11 +26,12 @@ export class AppComponent implements OnInit {
   // DEPOIS APAGAR INICIALIZAÇÃO
 
   imagePath: any;
-
+  currentPath: any;
   userData: any;
 
   constructor(private arcadeBattleService: ArcadebattleService, private router: Router,
-              private sanitizer: DomSanitizer) {
+              private sanitizer: DomSanitizer, private activatedRoute: ActivatedRoute) {
+
     if (localStorage.getItem('current_user') != null) {
       this.userData = JSON.parse(localStorage.getItem('current_user'));
       this.imagePath = this.sanitizer.bypassSecurityTrustResourceUrl('data:image/jpg;base64,'
@@ -44,6 +46,7 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.currentPath = window.location.pathname.substr(1);
   }
 
   noToken(): boolean {

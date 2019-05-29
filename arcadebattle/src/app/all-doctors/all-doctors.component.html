@@ -16,7 +16,7 @@
               <th class="text-center">Birth Date</th>
               <th class="text-center">NIF</th>
               <th>E-mail</th>
-              <th *ngIf="(userType == 'admin')">Rem.</th>
+              <th id="removeButton" style="visibility:hidden">Rem.</th>
             </tr>
             </thead>
             <tbody>
@@ -62,28 +62,28 @@
 
             <div class="input-group">
               <div class="input-group-addon col-lg-4 offset-lg-1">
-                <i class="fa fa-phone"></i> {{ form.first_name.label }}
+                First Name
               </div>
               <div class="input-group-addon col-lg-6" >
-                {{ form.first_name }}
+                {{ remove.first_name }}
               </div>
             </div>
 
             <div class="input-group" style="margin-top: 20px">
               <div class="input-group-addon col-lg-4 offset-lg-1">
-                <i class="fa fa-phone"></i> {{ form.last_name.label }}
+                Last Name
               </div>
               <div class="input-group-addon col-lg-6" >
-                {{ form.last_name }}
+                {{ remove.last_name }}
               </div>
             </div>
 
             <div class="input-group" style="margin-top: 20px">
               <div class="input-group-addon col-lg-4 offset-lg-1">
-                <i class="fa fa-phone"></i> {{ form.email.label }}
+                Email
               </div>
               <div class="input-group-addon col-lg-6">
-                {{ form.email }}
+                {{ remove.email }}
               </div>
             </div>
           </div>

@@ -64,10 +64,10 @@
               <i class="fas fa-chevron-down" style="float:right; margin-top: 5px"></i>
             </a>
             <ul class="list-unstyled navbar__sub-list js-sub-list">
-              <li [attr.class]="(this.router.url == 'all_doctors')?'active':null">
+              <li [attr.class]="(currentPath == 'all_doctors')?'active':null">
                 <a routerLink="all_doctors"><i class="fas fa-align-left"></i>All Doctors</a>
               </li>
-              <li [attr.class]="(this.router.url == 'all_doctor')?'active':null">
+              <li [attr.class]="(currentPath == 'add_doctor')?'active':null">
                 <a routerLink="add_doctor"><i class="fas fa-plus"></i>Add Doctor</a>
               </li>
             </ul>

@@ -11,6 +11,7 @@ import { Location } from '@angular/common';
 export class AllDoctorsComponent implements OnInit {
   userType: string;
   doctors: object[];
+  remove: any;
 
   constructor(private arcadeBattleService: ArcadebattleService, private location: Location) {
     this.userType = localStorage.getItem('userType');
@@ -19,6 +20,9 @@ export class AllDoctorsComponent implements OnInit {
   ngOnInit() {
     (<any>$('#dtBasicExample')).DataTable();
     $('.dataTables_length').addClass('bs-select');
+    if (this.userType === 'admin') {
+      document.getElementById('removeButton').style.visibility = 'visible';
+    }
     this.getAllDoctors();
   }
 
@@ -29,6 +33,8 @@ export class AllDoctorsComponent implements OnInit {
               this.doctors = data.data;
             }
         );
+    $('#dtBasicExample tr:last').remove();
+
   }
 
   access_patient(doctor: any) {
@@ -36,7 +42,10 @@ export class AllDoctorsComponent implements OnInit {
   }
 
   loadInfo(doctor: any) {
-    console.log('loadInfo');
+    this.remove = {};
+    this.remove.first_name = doctor.first_name;
+    this.remove.last_name = doctor.last_name;
+    this.remove.email = doctor.username;
   }
 
 }
