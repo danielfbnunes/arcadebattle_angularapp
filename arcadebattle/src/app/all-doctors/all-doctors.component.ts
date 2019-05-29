@@ -22,6 +22,8 @@ export class AllDoctorsComponent implements OnInit {
     $('.dataTables_length').addClass('bs-select');
     if (this.userType === 'admin') {
       document.getElementById('removeButton').style.visibility = 'visible';
+    } else {
+      document.getElementById('removeButton').style.display = 'none';
     }
     this.getAllDoctors();
   }
