@@ -25,15 +25,25 @@ export class AppComponent implements OnInit {
   // DEPOIS APAGAR INICIALIZAÇÃO
 
   imagePath: any;
-  userData = new User();
-  authenticated = false;
+
+  userData: any;
 
   constructor(private arcadeBattleService: ArcadebattleService, private router: Router,
               private sanitizer: DomSanitizer) {
+    if (localStorage.getItem('current_user') != null) {
+      this.userData = JSON.parse(localStorage.getItem('current_user'));
+      this.imagePath = this.sanitizer.bypassSecurityTrustResourceUrl('data:image/jpg;base64,'
+          + this.userData.photoB64);
+    } else {
+      this.userData = new User();
+    }
+  }
+
+  logout() {
+    localStorage.removeItem('token');
   }
 
   ngOnInit(): void {
-    localStorage.removeItem('token');
   }
 
   noToken(): boolean {
@@ -48,6 +58,7 @@ export class AppComponent implements OnInit {
                   if (data) {
                     localStorage.setItem('token', data.token);
                     localStorage.setItem('userType', data.user_type);
+                    this.userData = new User();
                     this.userData.userType = data.user_type;
                     this.userData.firstName = data.first_name;
                     this.userData.lastName = data.last_name;
@@ -56,7 +67,6 @@ export class AppComponent implements OnInit {
                     this.imagePath = this.sanitizer.bypassSecurityTrustResourceUrl('data:image/jpg;base64,'
                         + this.userData.photoB64);
                     localStorage.setItem('current_user', JSON.stringify(this.userData))
-                    this.authenticated = true;
                   }
         });
   }
