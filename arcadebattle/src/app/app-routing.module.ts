@@ -10,6 +10,7 @@ import {AdminStatisticsComponent} from './admin-statistics/admin-statistics.comp
 import {AllPatientsComponent} from './all-patients/all-patients.component';
 import {AddAdminComponent} from './add-admin/add-admin.component';
 import {AddGameComponent} from './add-game/add-game.component';
+import {AddPatientComponent} from './add-patient/add-patient.component';
 
 const routes: Routes = [
     {path: '', component: GeneralStatisticsComponent},
@@ -22,7 +23,8 @@ const routes: Routes = [
     {path: 'admin_statistics/:email', component: AdminStatisticsComponent},
     {path: 'add_doctor', component: AddDoctorComponent},
     {path: 'add_admin', component: AddAdminComponent},
-    {path: 'add_game', component: AddGameComponent}
+    {path: 'add_game', component: AddGameComponent},
+    {path: 'add_patient', component: AddPatientComponent}
 ];
 
 @NgModule({

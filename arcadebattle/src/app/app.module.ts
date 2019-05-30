@@ -17,6 +17,7 @@ import { AdminStatisticsComponent } from './admin-statistics/admin-statistics.co
 import { AllPatientsComponent } from './all-patients/all-patients.component';
 import { AddAdminComponent } from './add-admin/add-admin.component';
 import { AddGameComponent } from './add-game/add-game.component';
+import { AddPatientComponent } from './add-patient/add-patient.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { AddGameComponent } from './add-game/add-game.component';
     AdminStatisticsComponent,
     AllPatientsComponent,
     AddAdminComponent,
-    AddGameComponent
+    AddGameComponent,
+    AddPatientComponent
   ],
   imports: [
     BrowserModule,
