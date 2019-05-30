@@ -11,7 +11,7 @@ import { AllDoctorsComponent } from './all-doctors/all-doctors.component';
 import { DoctorStatisticsComponent } from './doctor-statistics/doctor-statistics.component';
 import { AllGamesComponent } from './all-games/all-games.component';
 import { AddDoctorComponent } from './add-doctor/add-doctor.component';
-
+import { ExpandableListModule } from 'angular2-expandable-list';
 
 @NgModule({
   declarations: [
@@ -26,7 +26,8 @@ import { AddDoctorComponent } from './add-doctor/add-doctor.component';
     BrowserModule,
     FormsModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    ExpandableListModule
   ],
   providers: [ArcadebattleService],
   bootstrap: [AppComponent]

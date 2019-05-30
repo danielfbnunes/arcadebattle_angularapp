@@ -32,85 +32,91 @@
         <h2>Arcade Battle</h2>
       </a>
     </div>
-    <div class="menu-sidebar__content js-scrollbar1">
+    <div class="menu-sidebar__content js-scrollbar1" style="width:100%">
+
+
+
+
       <nav class="navbar-sidebar">
         <ul class="list-unstyled navbar__list">
 
-          <li>
-            <a routerLink='general_statistics'>
+          <li onmouseover="this.firstChild.style.color='#1E90FF'"  onmouseout="this.firstChild.style.color='black'">
+            <a routerLink='general_statistics' style="color: #000;">
               <i class="fas fa-chart-bar"></i>Statistics
             </a>
           </li>
 
-          <!-- If the user is an admin he can see and add admins -->
-          <li *ngIf="(userData.userType == 'admin')" class="has-sub">
-            <a class="js-arrow" href="#">
-              <i class="fas fa-unlock-alt"></i>Admins
-              <i class="fas fa-chevron-down" style="float:right; margin-top: 5px"></i>
-            </a>
-            <ul class="list-unstyled navbar__sub-list js-sub-list">
-              <li [attr.class]="(this.router.url == 'all_admins')?'active':null">
-                <a routerLink="all_admins"><i class="fas fa-align-left"></i>All Admins</a>
-              </li>
-              <li [attr.class]="(this.router.url == 'add_admin')?'active':null">
-                <a routerLink="add_admin"><i class="fas fa-plus"></i>Add Admin</a>
-              </li>
-            </ul>
-          </li>
+          <expandable-list style="padding: 0px !important;"  *ngIf="(userData.userType == 'admin')">
+            <expandable-list-item  style="padding: 0px !important;" >
+              <span title onmouseover="this.style.color='#1E90FF'"  onmouseout="this.style.color='black'">  <i class="fas fa-unlock-alt" style="margin-right:19px; padding: 0px !important;"></i>Admins</span>
 
-          <li *ngIf="(userData.userType == 'admin')" class="has-sub">
-            <a class="js-arrow" href="#">
-              <i class="fas fa-medkit"></i>Doctors
-              <i class="fas fa-chevron-down" style="float:right; margin-top: 5px"></i>
-            </a>
-            <ul class="list-unstyled navbar__sub-list js-sub-list">
-              <li [attr.class]="(currentPath == 'all_doctors')?'active':null">
-                <a routerLink="all_doctors"><i class="fas fa-align-left"></i>All Doctors</a>
-              </li>
-              <li [attr.class]="(currentPath == 'add_doctor')?'active':null">
-                <a routerLink="add_doctor"><i class="fas fa-plus"></i>Add Doctor</a>
-              </li>
-            </ul>
-          </li>
-          <li *ngIf="(userData.userType == 'doctor')" [attr.class]="(this.router.url == 'all_doctors')?'active':null">
+              <a  item routerLink="all_admins" style="margin-left: 20px"x>
+                <i class="fas fa-align-left" style="margin-right:15px"></i>
+                All Admins
+              </a>
+              <a item routerLink="add_admin" style="margin-left: 20px">
+                <i class="fas fa-plus" style="margin-right:15px"></i>
+                Add Admin
+              </a>
+            </expandable-list-item>
+          </expandable-list>
+
+
+
+          <expandable-list style="padding: 0px !important;"  *ngIf="(userData.userType == 'admin')">
+            <expandable-list-item  style="padding: 0px !important;">
+              <span title onmouseover="this.style.color='#1E90FF'"  onmouseout="this.style.color='black'">  <i class="fas fa-medkit" style="margin-right:19px; padding: 0px !important;"></i>Doctors</span>
+
+              <a  item routerLink="all_doctors" style="margin-left: 20px" >
+                <i class="fas fa-align-left" style="margin-right:15px"></i>
+                All Doctors
+              </a>
+              <a item routerLink="add_doctor" style="margin-left: 20px">
+                <i class="fas fa-plus" style="margin-right:15px"></i>
+                Add Doctor
+              </a>
+            </expandable-list-item>
+          </expandable-list>
+
+
+          <li *ngIf="(userData.userType == 'doctor')" [attr.class]="(this.router.url == 'all_doctors')?'active':null" onmouseover="this.firstChild.style.color='#1E90FF'"  onmouseout="this.firstChild.style.color='black'">
             <a routerLink="all_doctors"><i class="fas fa-align-left"></i>All Doctors</a>
           </li>
 
 
-          <!-- If the user is an admin he can see and add patients -->
-          <li *ngIf="(userData.userType == 'admin' || userData.userType == 'doctor')" [attr.class]="(this.router.url == 'all_patients')?'has-sub active':'has-sub'" >
-            <a class="js-arrow" href="#">
-              <i class="fas fa-address-book"></i>Patients
-              <i class="fas fa-chevron-down" style="float:right; margin-top: 5px"></i>
-            </a>
-            <ul class="list-unstyled navbar__sub-list js-sub-list">
-              <li *ngIf="(userData.userType == 'admin')" [attr.class]="(this.router.url == 'all_patients')?'active':null">
-                <a routerLink="all_patients"><i class="fas fa-align-left"></i>All Patients</a>
-              </li>
-              <li *ngIf="(userData.userType == 'doctor')" [attr.class]="(this.router.url == 'my_patients')?'active':null">
-                <a routerLink="my_patients"><i class="fas fa-align-left"></i>My Patients</a>
-              </li>
-              <li [attr.class]="(userData.userType == 'add_patient')?'active':null">
-                <a routerLink="add_patient"><i class="fas fa-plus"></i>Add Patient</a>
-              </li>
-            </ul>
-          </li>
+          <expandable-list style="padding: 0px !important;"  *ngIf="(userData.userType == 'admin' || userData.userType == 'doctor')">
+            <expandable-list-item  style="padding: 0px !important;">
+              <span title onmouseover="this.style.color='#1E90FF'"  onmouseout="this.style.color='black'">  <i class="fas fa-address-book" style="margin-right:19px; padding: 0px !important;"></i>Patients</span>
 
-          <!-- If the user is an admin he can see add new games-->
-          <li *ngIf="(userData.userType == 'admin'); else elseGames" [attr.class]="(this.router.url == 'all_games')?'has-sub active':'has-sub'" >
-            <a class="js-arrow" href="#">
-              <i class="fas fa-gamepad"></i>Games
-              <i class="fas fa-chevron-down" style="float:right; margin-top: 5px"></i>
-            </a>
-            <ul class="list-unstyled navbar__sub-list js-sub-list">
-              <li [attr.class]="(this.router.url == 'all_games')?'active':null">
-                <a routerLink="all_games"><i class="fas fa-align-left"></i>All Games</a>
-              </li>
-              <li [attr.class]="(this.router.url == 'add_game')?'active':null">
-                <a routerLink="add_game"><i class="fas fa-plus"></i>Add Game</a>
-              </li>
-            </ul>
-          </li>
+              <a  item routerLink="all_patients" style="margin-left: 20px">
+                <i class="fas fa-align-left" style="margin-right:15px"></i>
+                All Patients
+              </a>
+              <a item routerLink="add_patient" style="margin-left: 20px">
+                <i class="fas fa-plus" style="margin-right:15px"></i>
+                Add Patient
+              </a>
+            </expandable-list-item>
+          </expandable-list>
+
+
+
+
+
+          <expandable-list style="padding: 0px !important;" *ngIf="(userData.userType == 'admin'); else elseGames">
+            <expandable-list-item  style="padding: 0px !important;">
+              <span title onmouseover="this.style.color='#1E90FF'"  onmouseout="this.style.color='black'">  <i class="fas fa-gamepad" style="margin-right:19px; padding: 0px !important;"></i>Games</span>
+
+              <a  item routerLink="all_games"  style="margin-left: 20px">
+                <i class="fas fa-align-left" style="margin-right:15px"></i>
+                All Games
+              </a>
+              <a item routerLink="add_game" style="margin-left: 20px">
+                <i class="fas fa-plus" style="margin-right:15px"></i>
+                Add Game
+              </a>
+            </expandable-list-item>
+          </expandable-list>
           <ng-template #elseGames>
             <li [attr.class]="(this.router.url == 'all_games')?'active':null">
               <a routerLink="all_games"><i class="fas fa-align-left"></i>All Games</a>
