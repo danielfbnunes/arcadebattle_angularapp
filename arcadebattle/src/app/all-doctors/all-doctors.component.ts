@@ -22,6 +22,8 @@ export class AllDoctorsComponent implements OnInit {
     $('.dataTables_length').addClass('bs-select');
     if (this.userType === 'admin') {
       document.getElementById('removeButton').style.visibility = 'visible';
+    } else {
+      document.getElementById('removeButton').style.display = 'none';
     }
     this.getAllDoctors();
   }
@@ -48,6 +50,7 @@ export class AllDoctorsComponent implements OnInit {
     this.remove.email = doctor.username;
   }
 
+<<<<<<< HEAD
   removeDoctor(email: any) {
     this.arcadeBattleService.removeUser(email).subscribe(data => {
       console.log(data);
@@ -55,4 +58,6 @@ export class AllDoctorsComponent implements OnInit {
     }
   );
   }
+=======
+>>>>>>> 2c4d8365a13444f4ef1d736e6abe09d16f9917f5
 }
