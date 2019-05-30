@@ -208,27 +208,26 @@
                 </div>
                 <div class="tab-pane fade" id="custom-nav-contact" role="tabpanel" aria-labelledby="custom-nav-contact-tab">
                   <div class="row" style="margin-top: 2%">
-
-                    <div *ngFor="let g of patient_gestures" class="col-md-3">
+                    <div *ngFor="let g of patientGestures" class="col-md-3">
                       <div class="card">
                         <div class="card-header" style="text-align: center; background:#8C8C8C; color:#fff">
                           <strong class="card-title mb-3 sm-6">{{ g.name }}</strong>
                         </div>
                         <div class="card-body">
                           <div class="mx-auto d-block">
-                            <img class="mx-auto d-block" src="data:image/png;base64, {{ g.image }}" alt="Card image cap">
+                            <img class="mx-auto d-block" [src]="getImagePath(g.image)" alt="Card image cap">
                           </div>
                           <hr>
                           <div class="card-text text-md-center">
                             <button type="button"
                                     class="btn btn-sm btn-outline-primary video"
                                     data-toggle="modal" data-target="#gestureStatisticsModal"
-                                    onclick="updateGestureStatisticModal(this, g)" >
+                                    (click)="updateGestureStatisticModal(g)" >
                               <i class="fas fa-search-plus"></i> Gesture Statistics
                             </button>
                             <button type="button" class="btn-sm btn-danger"
                                     data-toggle="modal" data-target="#deleteModal"
-                                    onclick="loadInfo(g)"
+                                    (click)="loadInfo(g)"
                                     style="margin-top: 10px">
                               Remove
                             </button>
@@ -254,7 +253,6 @@
                         <div class="au-card-inner">
                           <h3 class="title-2 m-b-40">Gestures Difficulty</h3>
                           <canvas id="gesturesChart"></canvas>
-                          <h1 style="display:none" id="gestureChart_dict">{{ gestures_dict }}</h1>
                         </div>
                       </div>
                     </div>
@@ -326,7 +324,7 @@
                       <div class="input-group-addon" style="margin-right:7px; width:33%">
                         <i class="fas fa-flag"></i> Repetitions
                       </div>
-                      <input id="gestureStatisticsRepetitions" type="text" id="input1-group1" disabled name="input1-group1" value="" class="form-control">
+                      <input id="gestureStatisticsRepetitions" type="text" disabled name="input1-group1" value="" class="form-control">
                     </div>
                   </div>
                 </div>
@@ -407,7 +405,7 @@
         </button>
       </div>
 
-      <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
+      <form (ngSubmit)="removeGesture()">
 
         <div class="modal-body">
 
@@ -424,19 +422,19 @@
 
             <div class="input-group" style="margin-top: 10px">
               <div class="input-group-addon col-lg-3 offset-lg-1">
-                <i class="far fa-hand-paper"></i> {{ gesture_form.gesture_name.label }}
+                <i class="far fa-hand-paper"></i> Gesture Name
               </div>
               <div class="input-group-addon col-lg-7" >
-                {{ gesture_form.gesture_name }}
+                <input type="text" name="removeName" [(ngModel)]="removeName">
               </div>
             </div>
 
             <div class="input-group" style="margin-top: 10px">
               <div class="input-group-addon col-lg-3 offset-lg-1">
-                <i class="fas fa-envelope-square"></i> {{ gesture_form.user_email.label }}
+                <i class="fas fa-envelope-square"></i> Patient Email
               </div>
               <div class="input-group-addon col-lg-7" >
-                {{ gesture_form.user_email }}
+                <input type="text" name="removeUsername" [(ngModel)]="removeUsername">
               </div>
             </div>
 

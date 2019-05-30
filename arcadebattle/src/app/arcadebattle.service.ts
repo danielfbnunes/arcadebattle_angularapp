@@ -86,4 +86,10 @@ export class ArcadebattleService {
     httpOptions.headers = new HttpHeaders({'Content-Type': 'application/json', 'Authorization' : 'Token ' + localStorage.getItem('token')});
     return this.http.get<any>(url, httpOptions);
   }
+
+  removeGesture(name: string, username: string): Observable<any> {
+    const url = this.baseUrl + 'delete_gesture/' + username + '/' + name;
+    httpOptions.headers = new HttpHeaders({'Content-Type': 'application/json', 'Authorization' : 'Token ' + localStorage.getItem('token')});
+    return this.http.delete<any>(url, httpOptions);
+  }
 }

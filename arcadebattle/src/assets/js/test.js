@@ -222,6 +222,7 @@ function resetGestureAndTest(){
 
 function updateGestureStatisticModal(button, g)
 {
+    console.log("AQUI" + g)
     var g_name = g.name;
     var g_patient_difficulty = g.patient_difficulty;
     var g_default_difficulty = g.default_difficulty;
