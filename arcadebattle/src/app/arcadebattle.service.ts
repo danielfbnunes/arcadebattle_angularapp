@@ -79,6 +79,11 @@ export class ArcadebattleService {
     httpOptions.headers = new HttpHeaders({'Content-Type': 'application/json', 'Authorization' : 'Token ' + localStorage.getItem('token')});
     console.log(data);
     return this.http.post(url, data, httpOptions);
+  }
 
+  get_gestures(username: any): Observable<any> {
+    const url = this.baseUrl + 'gestures/' + username;
+    httpOptions.headers = new HttpHeaders({'Content-Type': 'application/json', 'Authorization' : 'Token ' + localStorage.getItem('token')});
+    return this.http.get<any>(url, httpOptions);
   }
 }

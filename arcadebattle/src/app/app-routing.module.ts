@@ -11,6 +11,7 @@ import {AllPatientsComponent} from './all-patients/all-patients.component';
 import {AddAdminComponent} from './add-admin/add-admin.component';
 import {AddGameComponent} from './add-game/add-game.component';
 import {AddPatientComponent} from './add-patient/add-patient.component';
+import {PatientStatisticsComponent} from './patient-statistics/patient-statistics.component';
 
 const routes: Routes = [
     {path: '', component: GeneralStatisticsComponent},
@@ -21,6 +22,7 @@ const routes: Routes = [
     {path: 'all_patients', component: AllPatientsComponent},
     {path: 'doctor_statistics/:email', component: DoctorStatisticsComponent},
     {path: 'admin_statistics/:email', component: AdminStatisticsComponent},
+    {path: 'patient_statistics/:email', component: PatientStatisticsComponent},
     {path: 'add_doctor', component: AddDoctorComponent},
     {path: 'add_admin', component: AddAdminComponent},
     {path: 'add_game', component: AddGameComponent},
