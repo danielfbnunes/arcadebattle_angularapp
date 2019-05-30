@@ -145,39 +145,28 @@
         <div class="container-fluid">
           <div class="header-wrap">
             <div class="header-button">
+
+
               <div class="account-wrap">
-                <div class="account-item clearfix js-item-menu">
+                <div class="account-item clearfix ">
                   <div class="image">
                     <img [src]="imagePath" />
                   </div>
                   <div class="content">
-                    <a class="js-acc-btn" href="#" >{{ userData.firstName }} {{ userData.lastName }}</a>
+                    <a class="js-acc-btn" routerLink="about" >{{ userData.firstName }} {{ userData.lastName }}</a>
+                    <button onclick="window.location.href='about' "type="button" class="btn-sm btn-primary"  style="margin-left:7px;">
+                      <i class="fas fa-edit"></i>
+                    </button>
+                    <button (click)="logout()" type="button" class="btn-sm btn-danger" style="margin-left:7px;">
+                      <i class="fas fa-power-off"></i>
+                    </button>
                   </div>
-                  <div class="account-dropdown js-dropdown">
-                    <div class="info clearfix">
-                      <div class="image">
-                        <img [src]="imagePath" />
-                      </div>
-                      <div class="content">
-                        <h5 class="name">
-                          <a href="">{{ userData.firstName }} {{ userData.lastName }}</a>
-                        </h5>
-                        <span class="email">{{ userData.email }}</span>
-                      </div>
-                    </div>
-                    <div *ngIf="(userData.email != 'admin')" class="account-dropdown__body">
-                      <div class="account-dropdown__item">
-                        <a routerLink="about">
-                          <i class="zmdi zmdi-account"></i>Account</a>
-                      </div>
-                    </div>
-                    <div class="account-dropdown__footer">
-                      <a routerLink="logout">
-                        <i class="zmdi zmdi-power"></i>Logout</a>
-                    </div>
-                  </div>
+
+
+
                 </div>
               </div>
+
             </div>
           </div>
         </div>
