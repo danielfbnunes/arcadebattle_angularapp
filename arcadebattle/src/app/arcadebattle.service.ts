@@ -61,4 +61,16 @@ export class ArcadebattleService {
     console.log(data);
     return this.http.post(url, data, httpOptions);
   }
+
+  all_admins(): Observable<any> {
+    const url = this.baseUrl + 'all_admins';
+    httpOptions.headers = new HttpHeaders({'Content-Type': 'application/json', 'Authorization' : 'Token ' + localStorage.getItem('token')});
+    return this.http.get<any>(url, httpOptions);
+  }
+
+  all_patients(): Observable<any> {
+    const url = this.baseUrl + 'all_patients';
+    httpOptions.headers = new HttpHeaders({'Content-Type': 'application/json', 'Authorization' : 'Token ' + localStorage.getItem('token')});
+    return this.http.get<any>(url, httpOptions);
+  }
 }

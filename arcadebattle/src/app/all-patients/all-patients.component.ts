@@ -3,14 +3,14 @@ import {ArcadebattleService} from '../arcadebattle.service';
 import { Location } from '@angular/common';
 
 @Component({
-  selector: 'app-all-doctors',
-  templateUrl: './all-doctors.component.html',
-  styleUrls: ['./all-doctors.component.css']
+  selector: 'app-all-patients',
+  templateUrl: './all-patients.component.html',
+  styleUrls: ['./all-patients.component.css']
 })
+export class AllPatientsComponent implements OnInit {
 
-export class AllDoctorsComponent implements OnInit {
   userType: string;
-  doctors: object[];
+  patients: object[];
   remove: any;
 
   constructor(private arcadeBattleService: ArcadebattleService, private location: Location) {
@@ -20,19 +20,20 @@ export class AllDoctorsComponent implements OnInit {
   ngOnInit() {
     (<any>$('#dtBasicExample')).DataTable();
     $('.dataTables_length').addClass('bs-select');
-    if (this.userType === 'admin') {
+    if (this.userType === 'admin' || this.userType === 'doctor') {
       document.getElementById('removeButton').style.visibility = 'visible';
     } else {
       document.getElementById('removeButton').style.display = 'none';
     }
-    this.getAllDoctors();
+    this.getAllPatients();
   }
 
-  getAllDoctors() {
-    this.arcadeBattleService.all_doctors()
+  getAllPatients() {
+    this.arcadeBattleService.all_patients()
         .subscribe(
             data => {
-              this.doctors = data.data;
+              console.log(data);
+              this.patients = data.data;
             }
         );
     $('#dtBasicExample tr:last').remove();
@@ -40,7 +41,7 @@ export class AllDoctorsComponent implements OnInit {
   }
 
   access_patient(doctor: any) {
-    location.replace('doctor_statistics/' + doctor.username);
+    location.replace('patient_statistics/' + doctor.username);
   }
 
   loadInfo(doctor: any) {
@@ -50,11 +51,12 @@ export class AllDoctorsComponent implements OnInit {
     this.remove.email = doctor.username;
   }
 
-  removeDoctor(email: any) {
+  removePatient(email: any) {
     this.arcadeBattleService.removeUser(email).subscribe(data => {
-      console.log(data);
-      window.location = window.location;
-    }
-  );
+          console.log(data);
+          window.location = window.location;
+        }
+    );
   }
 }
+

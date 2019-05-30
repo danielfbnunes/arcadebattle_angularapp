@@ -12,6 +12,10 @@ import { DoctorStatisticsComponent } from './doctor-statistics/doctor-statistics
 import { AllGamesComponent } from './all-games/all-games.component';
 import { AddDoctorComponent } from './add-doctor/add-doctor.component';
 import { ExpandableListModule } from 'angular2-expandable-list';
+import { AllAdminsComponent } from './all-admins/all-admins.component';
+import { AdminStatisticsComponent } from './admin-statistics/admin-statistics.component';
+import { AllPatientsComponent } from './all-patients/all-patients.component';
+import { AddAdminComponent } from './add-admin/add-admin.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +24,11 @@ import { ExpandableListModule } from 'angular2-expandable-list';
     AllDoctorsComponent,
     DoctorStatisticsComponent,
     AllGamesComponent,
-    AddDoctorComponent
+    AddDoctorComponent,
+    AllAdminsComponent,
+    AdminStatisticsComponent,
+    AllPatientsComponent,
+    AddAdminComponent
   ],
   imports: [
     BrowserModule,

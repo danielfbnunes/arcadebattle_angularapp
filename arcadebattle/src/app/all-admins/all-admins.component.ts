@@ -1,16 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import {ArcadebattleService} from '../arcadebattle.service';
-import { Location } from '@angular/common';
+import {Location} from '@angular/common';
 
 @Component({
-  selector: 'app-all-doctors',
-  templateUrl: './all-doctors.component.html',
-  styleUrls: ['./all-doctors.component.css']
+  selector: 'app-all-admins',
+  templateUrl: './all-admins.component.html',
+  styleUrls: ['./all-admins.component.css']
 })
-
-export class AllDoctorsComponent implements OnInit {
+export class AllAdminsComponent implements OnInit {
   userType: string;
-  doctors: object[];
+  admins: object[];
   remove: any;
 
   constructor(private arcadeBattleService: ArcadebattleService, private location: Location) {
@@ -25,22 +24,22 @@ export class AllDoctorsComponent implements OnInit {
     } else {
       document.getElementById('removeButton').style.display = 'none';
     }
-    this.getAllDoctors();
+    this.getAllAdmins();
   }
 
-  getAllDoctors() {
-    this.arcadeBattleService.all_doctors()
+  getAllAdmins() {
+    this.arcadeBattleService.all_admins()
         .subscribe(
             data => {
-              this.doctors = data.data;
+              this.admins = data.data;
             }
         );
     $('#dtBasicExample tr:last').remove();
 
   }
 
-  access_patient(doctor: any) {
-    location.replace('doctor_statistics/' + doctor.username);
+  access_patient(admin: any) {
+    location.replace('admin_statistics/' + admin.username);
   }
 
   loadInfo(doctor: any) {
@@ -50,11 +49,12 @@ export class AllDoctorsComponent implements OnInit {
     this.remove.email = doctor.username;
   }
 
-  removeDoctor(email: any) {
+  removeAdmin(email: any) {
     this.arcadeBattleService.removeUser(email).subscribe(data => {
-      console.log(data);
-      window.location = window.location;
-    }
-  );
+          console.log(data);
+          window.location = window.location;
+        }
+    );
   }
+
 }
