@@ -48,4 +48,17 @@ export class ArcadebattleService {
     httpOptions.headers = new HttpHeaders({'Content-Type': 'application/json', 'Authorization' : 'Token ' + localStorage.getItem('token')});
     return this.http.get<any>(url, httpOptions);
   }
+
+  removeUser(username: string): Observable<any> {
+    const url = this.baseUrl + 'delete_user/' + username;
+    httpOptions.headers = new HttpHeaders({'Content-Type': 'application/json', 'Authorization' : 'Token ' + localStorage.getItem('token')});
+    return this.http.delete<any>(url, httpOptions);
+  }
+
+  add_user(data: any): Observable<any> {
+    const url = this.baseUrl + 'new_user';
+    httpOptions.headers = new HttpHeaders({'Content-Type': 'application/json', 'Authorization' : 'Token ' + localStorage.getItem('token')});
+    console.log(data);
+    return this.http.post(url, data, httpOptions);
+  }
 }

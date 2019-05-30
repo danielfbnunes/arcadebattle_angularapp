@@ -50,7 +50,7 @@ export class AppComponent implements OnInit {
   }
 
   noToken(): boolean {
-    console.log((localStorage.getItem('token') == null));
+    console.log(localStorage.getItem('token'));
     return (localStorage.getItem('token') == null);
   }
 

@@ -6,7 +6,7 @@
           <div class="card-header">
             <strong>ADD DOCTOR</strong>
           </div>
-          <form (ngSubmit)="addDoctor()" enctype="multipart/form-data">
+          <form (ngSubmit)="addDoctor(photo)" enctype="multipart/form-data">
             <div class="card-body card-block">
               <div class="row form-group">
                 <div class="col col-md-1 col-sm-2 ">
@@ -76,7 +76,7 @@
                   <label for="id_photo">Photo:</label>
                 </div>
                 <div class="col-12 col-md-5 col-sm-4">
-                  <input [(ngModel)]="photo" type="file" name="photo" accept="image/*" id="id_photo">
+                  <input #photo type="file" name="photo" accept="image/*" id="id_photo">
                 </div>
               </div>
 

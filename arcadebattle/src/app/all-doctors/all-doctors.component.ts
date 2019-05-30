@@ -48,4 +48,11 @@ export class AllDoctorsComponent implements OnInit {
     this.remove.email = doctor.username;
   }
 
+  removeDoctor(email: any) {
+    this.arcadeBattleService.removeUser(email).subscribe(data => {
+      console.log(data);
+      window.location = window.location;
+    }
+  );
+  }
 }

@@ -4,13 +4,15 @@ import {GeneralStatisticsComponent} from './general-statistics/general-statistic
 import {AllDoctorsComponent} from './all-doctors/all-doctors.component';
 import {DoctorStatisticsComponent} from './doctor-statistics/doctor-statistics.component';
 import {AllGamesComponent} from './all-games/all-games.component';
+import {AddDoctorComponent} from './add-doctor/add-doctor.component';
 
 const routes: Routes = [
     {path: '', component: GeneralStatisticsComponent},
     {path: 'general_statistics', component: GeneralStatisticsComponent},
     {path: 'all_doctors', component: AllDoctorsComponent},
     {path: 'doctor_statistics/:email', component: DoctorStatisticsComponent},
-    {path: 'all_games', component: AllGamesComponent}
+    {path: 'all_games', component: AllGamesComponent},
+    {path: 'add_doctor', component: AddDoctorComponent}
 ];
 
 @NgModule({
