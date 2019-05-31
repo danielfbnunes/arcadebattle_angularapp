@@ -12,6 +12,7 @@ import {AddAdminComponent} from './add-admin/add-admin.component';
 import {AddGameComponent} from './add-game/add-game.component';
 import {AddPatientComponent} from './add-patient/add-patient.component';
 import {PatientStatisticsComponent} from './patient-statistics/patient-statistics.component';
+import {AboutComponent} from './about/about.component';
 
 const routes: Routes = [
     {path: '', component: GeneralStatisticsComponent},
@@ -26,7 +27,8 @@ const routes: Routes = [
     {path: 'add_doctor', component: AddDoctorComponent},
     {path: 'add_admin', component: AddAdminComponent},
     {path: 'add_game', component: AddGameComponent},
-    {path: 'add_patient', component: AddPatientComponent}
+    {path: 'add_patient', component: AddPatientComponent},
+    {path: 'about', component: AboutComponent}
 ];
 
 @NgModule({
