@@ -109,12 +109,11 @@ export class GeneralStatisticsComponent implements OnInit {
     }
 
     getStats();
-
     function replaceAll(text, search, replacement) {
       return text.split(search).join(replacement);
     }
 
-    function getStats(){
+    function getStats() {
       let temp: any;
       temp = testStr;
       temp = replaceAll(temp, '\'', '\"');

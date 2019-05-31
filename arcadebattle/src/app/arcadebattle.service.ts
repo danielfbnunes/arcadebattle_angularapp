@@ -58,7 +58,6 @@ export class ArcadebattleService {
   add_user(data: any): Observable<any> {
     const url = this.baseUrl + 'new_user';
     httpOptions.headers = new HttpHeaders({'Content-Type': 'application/json', 'Authorization' : 'Token ' + localStorage.getItem('token')});
-    console.log(data);
     return this.http.post(url, data, httpOptions);
   }
 
@@ -77,7 +76,6 @@ export class ArcadebattleService {
   add_game(data: any): Observable<any> {
     const url = this.baseUrl + 'new_game';
     httpOptions.headers = new HttpHeaders({'Content-Type': 'application/json', 'Authorization' : 'Token ' + localStorage.getItem('token')});
-    console.log(data);
     return this.http.post(url, data, httpOptions);
   }
 
@@ -102,7 +100,12 @@ export class ArcadebattleService {
     update_profile(data: any): Observable<any> {
         const url = this.baseUrl + 'update_profile';
         httpOptions.headers = new HttpHeaders({'Content-Type': 'application/json', 'Authorization' : 'Token ' + localStorage.getItem('token')});
-        console.log(data);
         return this.http.post(url, data, httpOptions);
+    }
+
+    games_played_by_user(email: any): Observable<any> {
+        const url = this.baseUrl + 'games_played_by_user/' + email;
+        httpOptions.headers = new HttpHeaders({'Content-Type': 'application/json', 'Authorization' : 'Token ' + localStorage.getItem('token')});
+        return this.http.get<any>(url, httpOptions);
     }
 }
