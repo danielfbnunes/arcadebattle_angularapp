@@ -29,6 +29,7 @@ export class AboutComponent implements OnInit {
   tmpPhotoB64: any;
   passwordMismatch = false;
   tmpProfile: any;
+  birthMonthOptions: any;
 
 
   constructor(private arcadeBattleService: ArcadebattleService, private location: Location) {
@@ -51,7 +52,6 @@ export class AboutComponent implements OnInit {
   updateData(data) {
     this.profileData = data;
     this.profileData.pic = 'data:image/png;base64,' + this.profileData.photo_b64.trim();
-    console.log(this.profileData);
   }
 
   updateProfile(photo: any) {
@@ -60,7 +60,6 @@ export class AboutComponent implements OnInit {
     this.data.last_name = this.lastName;
     this.data.contact = this.contact;
     this.data.username = this.email;
-    this.data.birth_date = this.birthDateYear + '-' + this.birthDateMonth + '-' + this.birthDateDay;
     this.data.nif = this.nif;
     this.data.city = this.city;
     this.data.specialty = this.specialty;
@@ -81,6 +80,7 @@ export class AboutComponent implements OnInit {
 
     // send user type
     this.data.user_type = this.profileData.user_type;
+    this.data.birth_date = this.profileData.birth_date;
 
     if (this.data.first_name === undefined) {
       this.data.first_name = this.profileData.first_name;
@@ -93,9 +93,6 @@ export class AboutComponent implements OnInit {
     }
     if (this.data.username === undefined) {
       this.data.username = this.profileData.username;
-    }
-    if (this.data.birthDateYear === undefined) {
-      this.data.birth_date = this.profileData.birth_date;
     }
     if (this.data.nif === undefined) {
       this.data.nif = this.profileData.nif;
