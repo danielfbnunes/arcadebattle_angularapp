@@ -31,12 +31,30 @@ export class AddPatientComponent implements OnInit {
    */
 
   data: any;
+  reader: any;
+  imageSrc = '';
 
   constructor(private arcadeBattleService: ArcadebattleService) {
     this.userType = localStorage.getItem('userType');
   }
 
   ngOnInit() {
+  }
+
+  handleInputChange(e) {
+    const file = e.dataTransfer ? e.dataTransfer.files[0] : e.target.files[0];
+    const pattern = /image-*/;
+    this.reader = new FileReader();
+    if (!file.type.match(pattern)) {
+      alert('invalid format');
+      return;
+    }
+    this.reader.onload = this._handleReaderLoaded.bind(this);
+    this.reader.readAsDataURL(file);
+  }
+  _handleReaderLoaded(e) {
+    this.reader = e.target;
+    this.imageSrc = this.reader.result;
   }
 
   addPatient(photo: any) {
@@ -49,14 +67,7 @@ export class AddPatientComponent implements OnInit {
     this.data.birth_date = this.birthDateYear + '-' + this.birthDateMonth + '-' + this.birthDateDay;
     this.data.nif = this.nif;
     this.data.doctor = this.doctor;
-
-    const file = photo.files[0];
-    const myReader = new FileReader();
-
-    myReader.onloadend = (e) => {
-      this.data.photo_b64 = myReader.result.slice(22);
-    }
-    myReader.readAsDataURL(file);
+    this.data.photo_b64 = this.imageSrc.split(',')[1];
 
     this.arcadeBattleService.add_user(this.data).subscribe(data => console.log(data));
   }

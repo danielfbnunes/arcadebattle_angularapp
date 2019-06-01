@@ -19,9 +19,6 @@ export class AboutComponent implements OnInit {
   email: any;
   contact: any;
   nif: any;
-  birthDateMonth: any;
-  birthDateDay: any;
-  birthDateYear: any;
   city: any;
   specialty: any;
   newPassword: any;
@@ -29,7 +26,10 @@ export class AboutComponent implements OnInit {
   tmpPhotoB64: any;
   passwordMismatch = false;
   tmpProfile: any;
-  birthMonthOptions: any;
+
+  // for picture uploading
+  reader: any;
+  imageSrc = '';
 
 
   constructor(private arcadeBattleService: ArcadebattleService, private location: Location) {
@@ -38,6 +38,22 @@ export class AboutComponent implements OnInit {
 
   ngOnInit() {
     this.getProfile();
+  }
+
+  handleInputChange(e) {
+    const file = e.dataTransfer ? e.dataTransfer.files[0] : e.target.files[0];
+    const pattern = /image-*/;
+    this.reader = new FileReader();
+    if (!file.type.match(pattern)) {
+      alert('invalid format');
+      return;
+    }
+    this.reader.onload = this._handleReaderLoaded.bind(this);
+    this.reader.readAsDataURL(file);
+  }
+  _handleReaderLoaded(e) {
+    this.reader = e.target;
+    this.imageSrc = this.reader.result;
   }
 
   getProfile() {
@@ -54,7 +70,7 @@ export class AboutComponent implements OnInit {
     this.profileData.pic = 'data:image/png;base64,' + this.profileData.photo_b64.trim();
   }
 
-  updateProfile(photo: any) {
+  updateProfile() {
     this.data = {};
     this.data.first_name = this.firstName;
     this.data.last_name = this.lastName;
@@ -103,17 +119,10 @@ export class AboutComponent implements OnInit {
     if (this.data.city === undefined) {
       this.data.city = this.profileData.city;
     }
-    const file = photo.files[0];
-    const myReader = new FileReader();
 
     // update pic, if needed
-    try {
-      myReader.onloadend = (e) => {
-        this.tmpPhotoB64 = myReader.result.slice(22);
-      }
-      myReader.readAsDataURL(file);
-      this.data.photo_b64 = this.tmpPhotoB64;
-    } catch {
+    if (this.imageSrc !== '') {
+      this.data.photo_b64 = this.imageSrc.split(',')[1];
     }
 
     if (!this.passwordMismatch) {

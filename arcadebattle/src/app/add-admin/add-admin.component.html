@@ -60,7 +60,7 @@
                   <label for="id_photo">Photo:</label>
                 </div>
                 <div class="col-12 col-md-5 col-sm-4">
-                  <input #photo type="file" name="photo" accept="image/*" id="id_photo">
+                  <input name="imageUrl" type="file" accept="image/*" (change)="handleInputChange($event)" />
                 </div>
               </div>
 

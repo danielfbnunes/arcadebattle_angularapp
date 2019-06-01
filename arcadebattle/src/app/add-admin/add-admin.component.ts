@@ -29,9 +29,29 @@ export class AddAdminComponent implements OnInit {
 
   data: any;
 
+  // for picture uploading
+  reader: any;
+  imageSrc = '';
+
   constructor(private arcadeBattleService: ArcadebattleService) { }
 
   ngOnInit() {
+  }
+
+  handleInputChange(e) {
+    const file = e.dataTransfer ? e.dataTransfer.files[0] : e.target.files[0];
+    const pattern = /image-*/;
+    this.reader = new FileReader();
+    if (!file.type.match(pattern)) {
+      alert('invalid format');
+      return;
+    }
+    this.reader.onload = this._handleReaderLoaded.bind(this);
+    this.reader.readAsDataURL(file);
+  }
+  _handleReaderLoaded(e) {
+    this.reader = e.target;
+    this.imageSrc = this.reader.result;
   }
 
   addAdmin(photo: any) {
@@ -43,14 +63,8 @@ export class AddAdminComponent implements OnInit {
     this.data.username = this.email;
     this.data.birth_date = this.birthDateYear + '-' + this.birthDateMonth + '-' + this.birthDateDay;
     this.data.nif = this.nif;
+    this.data.photo_b64 = this.imageSrc.split(',')[1];
 
-    const file = photo.files[0];
-    const myReader = new FileReader();
-
-    myReader.onloadend = (e) => {
-      this.data.photo_b64 = myReader.result.slice(22);
-    }
-    myReader.readAsDataURL(file);
 
     this.arcadeBattleService.add_user(this.data).subscribe(data => console.log(data));
 
