@@ -49,6 +49,15 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.currentPath = window.location.pathname.substr(1);
+
+    if (localStorage.getItem('current_user') !== null) {
+      this.userData = JSON.parse(localStorage.getItem('current_user'));
+      this.imagePath = this.sanitizer.bypassSecurityTrustResourceUrl('data:image/jpg;base64,'
+          + this.userData.photoB64);
+    }
+
+
+
   }
 
   noToken(): boolean {

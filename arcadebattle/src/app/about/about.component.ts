@@ -28,6 +28,7 @@ export class AboutComponent implements OnInit {
   repeatPassword: any;
   tmpPhotoB64: any;
   passwordMismatch = false;
+  tmpProfile: any;
 
 
   constructor(private arcadeBattleService: ArcadebattleService, private location: Location) {
@@ -49,6 +50,8 @@ export class AboutComponent implements OnInit {
 
   updateData(data) {
     this.profileData = data;
+    this.profileData.pic = 'data:image/png;base64,' + this.profileData.photo_b64.trim();
+    console.log(this.profileData);
   }
 
   updateProfile(photo: any) {
@@ -61,6 +64,8 @@ export class AboutComponent implements OnInit {
     this.data.nif = this.nif;
     this.data.city = this.city;
     this.data.specialty = this.specialty;
+
+
 
 
     // update password, if needed
@@ -120,6 +125,18 @@ export class AboutComponent implements OnInit {
       alert('profile update!');
       window.location.href = 'general_statistics';
     }
+
+    // update user profile on app_component
+    this.tmpProfile = {};
+    this.tmpProfile.firstName = this.data.first_name;
+    this.tmpProfile.userType = this.data.user_type;
+    this.tmpProfile.lastName = this.data.last_name;
+    if ( this.data.photo_b64 !== undefined) {
+      this.tmpProfile.photoB64 = this.data.photo_b64;
+    } else {
+      this.tmpProfile.photoB64 = this.profileData.photo_b64;
+    }
+    localStorage.setItem('current_user', JSON.stringify(this.tmpProfile));
 
 
   }
