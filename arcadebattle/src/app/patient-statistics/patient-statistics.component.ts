@@ -11,7 +11,8 @@ import { Chart } from 'chart.js';
 })
 export class PatientStatisticsComponent implements OnInit {
 
-    gestures
+    gestures: any;
+    notes: any;
     removeName: any;
     removeUsername: any;
   patient: any;
@@ -212,6 +213,7 @@ export class PatientStatisticsComponent implements OnInit {
               this.imagePath = this.sanitizer.bypassSecurityTrustResourceUrl('data:image/jpg;base64,'
                   + this.patient.photo_b64);
               this.getPatientGestures(email);
+              this.notes = this.patient.notes;
             });
   }
 
@@ -288,6 +290,18 @@ export class PatientStatisticsComponent implements OnInit {
 
     removeGesture() {
         this.arcadeBattleService.removeGesture(this.removeName, this.removeUsername).subscribe(data => {
+                console.log(data);
+                window.location = window.location;
+            }
+        );
+    }
+
+    updateNotes() {
+        let dic: any;
+        dic = {};
+        dic.username = this.patient.username;
+        dic.notes = this.notes;
+        this.arcadeBattleService.update_notes(dic).subscribe(data => {
                 console.log(data);
                 window.location = window.location;
             }
