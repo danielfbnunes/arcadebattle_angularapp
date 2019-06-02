@@ -34,6 +34,7 @@ export class AddPatientComponent implements OnInit {
   reader: any;
   imageSrc = '';
   state = '';
+  stateMessage = '';
 
   constructor(private arcadeBattleService: ArcadebattleService) {
     this.userType = localStorage.getItem('userType');
@@ -41,6 +42,7 @@ export class AddPatientComponent implements OnInit {
 
   ngOnInit() {
     this.state = '';
+    this.stateMessage = '';
   }
 
   handleInputChange(e) {
@@ -71,7 +73,11 @@ export class AddPatientComponent implements OnInit {
     this.data.doctor = this.doctor;
     this.data.photo_b64 = this.imageSrc.split(',')[1];
 
-    this.arcadeBattleService.add_user(this.data).subscribe(data => console.log(data));
+    this.arcadeBattleService.add_user(this.data).subscribe(data => {
+      console.log(data);
+      this.state = data.state;
+      this.stateMessage = data.state_message;
+    });
   }
 
 }

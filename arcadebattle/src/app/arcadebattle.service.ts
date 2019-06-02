@@ -11,7 +11,7 @@ const httpOptions = {
 })
 
 export class ArcadebattleService {
-  private baseUrl = 'http://ec2-54-90-131-220.compute-1.amazonaws.com:80/';
+  private baseUrl = 'http://localhost:9000/';
 
   constructor(private http: HttpClient) {
   }

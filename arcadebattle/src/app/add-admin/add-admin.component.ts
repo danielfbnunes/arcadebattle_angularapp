@@ -32,10 +32,14 @@ export class AddAdminComponent implements OnInit {
   // for picture uploading
   reader: any;
   imageSrc = '';
+  state = '';
+  stateMessage = '';
 
   constructor(private arcadeBattleService: ArcadebattleService) { }
 
   ngOnInit() {
+    this.state = '';
+    this.stateMessage = '';
   }
 
   handleInputChange(e) {
@@ -66,7 +70,11 @@ export class AddAdminComponent implements OnInit {
     this.data.photo_b64 = this.imageSrc.split(',')[1];
 
 
-    this.arcadeBattleService.add_user(this.data).subscribe(data => console.log(data));
+    this.arcadeBattleService.add_user(this.data).subscribe(data => {
+      console.log(data);
+      this.state = data.state;
+      this.stateMessage = data.state_message;
+    });
 
   }
 

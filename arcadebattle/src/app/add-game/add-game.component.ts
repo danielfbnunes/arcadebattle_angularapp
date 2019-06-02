@@ -16,6 +16,7 @@ export class AddGameComponent implements OnInit {
    */
 
   state = '';
+  stateMessage = '';
   data: any;
   // for picture uploading
   reader: any;
@@ -25,6 +26,7 @@ export class AddGameComponent implements OnInit {
 
   ngOnInit() {
     this.state = '';
+    this.stateMessage = '';
   }
 
   handleInputChange(e) {
@@ -49,7 +51,11 @@ export class AddGameComponent implements OnInit {
     this.data.preview_link = this.previewLink;
     this.data.photo_b64 = this.imageSrc.split(',')[1];
 
-    this.arcadeBattleService.add_game(this.data).subscribe(data => console.log(data));
+    this.arcadeBattleService.add_game(this.data).subscribe(data => {
+      console.log(data);
+      this.state = data.state;
+      this.stateMessage = data.state_message;
+    });
   }
 
 }
