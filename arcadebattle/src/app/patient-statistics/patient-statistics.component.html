@@ -111,12 +111,12 @@
                   <div class="row" style="margin-top: 2%">
                     <div class="col-lg-12">
                       <div class="card">
-                        <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
+                        <form (ngSubmit)="addGesture()">
                           <div class="card-body card-block">
                             <div class="card-body card-block row">
 
                               <div class="row form-group col-lg-4 offset-lg-1 col-md-12 col-sm-12" style="text-align: center">
-                                <img class="img-responsive" id="gestureImg" name="gestureImage" src="https://www.bkhhw.nl/wp-content/themes/bkhhw/assets/images/placeholder-logo.jpg" alt="" width="460" height="345">
+                                <img class="img-responsive" id="gestureImg" name="gestureImage" [src]="gestureImage" alt="" width="460" height="345">
                                 <input type="text" name="gesture_image" id="imageInputText" style="display:none" placeholder="" class="form-control" required="">
                                 <input type="text" name="decision_tree" id="jsonInputText" style="display:none" placeholder="" class="form-control" required="">
                               </div>
@@ -126,33 +126,33 @@
                                   <label for="id_name">Name:</label>
                                 </div>
                                 <div class="col-12 col-md-9 col-sm-8" style="margin-bottom:30px">
-                                  <input type="text" name="name" placeholder="Insert the gesture name" class="form-control" required="" id="id_name">
+                                  <input type="text" [(ngModel)]="gestureName" name="name" placeholder="Insert the gesture name" class="form-control" required="" id="id_name">
                                 </div>
                                 <div class="col-12 col-md-3 col-sm-4" >
                                   <label for="id_default_difficulty">Default difficulty:</label>
                                 </div>
                                 <div id="myRange" class="col-12 col-md-7 col-sm-6">
-                                  <input type="range" name="default_difficulty" step="1" value="50" min="1" max="100" placeholder="Insert the default difficulty" class="form-control" required="" id="id_default_difficulty">
+                                  <input type="range" [(ngModel)]="gestureDefaultDifficulty" name="default_difficulty" step="1" value="50" min="1" max="100" placeholder="Insert the default difficulty" class="form-control" required="" id="id_default_difficulty">
                                 </div>
                                 <div class="col-12 col-md-2 col-sm-2">
-                                  <small id="progress_value"></small>
+                                  <small id="progress_value">{{ gestureDefaultDifficulty }} %</small>
                                 </div>
 
                                 <div class="col col-md-3 col-sm-8" style="margin-top:20px">
                                   <label for="id_repetitions">Number of repetitions:</label>
                                 </div>
                                 <div class="col-12 col-md-9 col-sm-4" style="margin-top:20px;">
-                                  <input type="number" name="repetitions" min="1" placeholder="Insert the number of repetitions" class="form-control" required="" id="id_repetitions">
+                                  <input type="number" [(ngModel)]="gestureRepetitions" name="repetitions" min="1" placeholder="Insert the number of repetitions" class="form-control" required="" id="id_repetitions">
                                 </div>
 
                                 <div class="offset-sm-3 offset-md-3 col-md-9 col-sm-9" style="padding-left:15px; padding-right:15px;">
-                                  <button type="button" class="btn btn-primary  col-12"  style="margin-top:20px;"  data-toggle="modal" data-target="#addGestureModal">
+                                  <button type="button" disabled class="btn btn-primary  col-12"  style="margin-top:20px;"  data-toggle="modal" data-target="#addGestureModal">
                                     Upload Gesture
                                   </button>
                                 </div>
 
                                 <div class="col-md-4 col-sm-4" style="padding-left:15px; padding-right:15px; margin-top:20px">
-                                  <button type="button" id="testGestureBtn" onclick="testGesture()" disabled class="btn btn-success  col-12"  style="margin-top:20px;">
+                                  <button type="button" id="testGestureBtn" disabled class="btn btn-success  col-12"  style="margin-top:20px;">
                                     Test Gesture
                                   </button>
                                 </div>
@@ -162,7 +162,7 @@
                                 </div>
 
                                 <div class="col-md-4 col-sm-4" style="padding-left:15px; padding-right:15px; margin-top:20px">
-                                  <button type="button" id="stopTestGesture" onclick="stopTesting()" disabled class="btn btn-danger  col-12"  style="margin-top:20px;">
+                                  <button type="button" id="stopTestGesture" disabled class="btn btn-danger  col-12"  style="margin-top:20px;">
                                     Stop
                                   </button>
                                 </div>
