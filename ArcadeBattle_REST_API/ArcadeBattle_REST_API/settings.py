@@ -28,7 +28,8 @@ DEBUG = True
 ALLOWED_HOSTS = ['tmserver.ieeta.pt',
                  'localhost',
                  '127.0.0.1',
-                 '0.0.0.0']
+                 '0.0.0.0',
+                 'rdireito.pythonanywhere.com']
 
 
 # Application definition

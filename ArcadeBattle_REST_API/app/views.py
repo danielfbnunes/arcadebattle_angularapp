@@ -20,7 +20,6 @@ from rest_framework.status import (
 # for cc
 import sys
 sys.path.insert(0, 'app/cc')
-import AssymmetricEncryption
 import time
 import base64
 from cryptography.x509.oid import NameOID
@@ -30,21 +29,6 @@ from cryptography.x509 import oid
 logging.basicConfig(level=logging.DEBUG)
 # certs dictionary
 certs_dic = dict()
-
-
-def challenge(certificate):
-    timestamp = round(time.time())
-    timestamp = str(timestamp)
-    cert = AssymmetricEncryption.b64_to_cert(certificate)
-    # STORE cert : timestamp
-    certs_dic[cert]=timestamp
-    return timestamp
-
-def validation(certificate, signature):
-    cert = AssymmetricEncryption.b64_to_cert(certificate)
-    # GET cert : timestamp
-    timestamp = certs_dic[cert]
-    return AssymmetricEncryption.cc_verify(base64.b64decode(signature), timestamp.encode(), cert.public_key()), cert
 
 
 def get_user_type(username, request=None):
@@ -150,53 +134,6 @@ def login(request):
 
     return Response( data, status=HTTP_200_OK)
 
-
-
-@csrf_exempt
-@api_view(["POST"])
-@permission_classes((AllowAny,))
-def login_cc(request):
-    certificate = request.data.get("certificate")
-    signature = request.data.get("signature")
-
-    # First, we only send the certificate
-    if certificate is not None and signature is None:
-        # save cert and timestamp
-        timestamp = challenge(certificate)
-        return Response({"timestamp":timestamp}, status=HTTP_200_OK)
-
-    # Then we send the certificate and a signed message
-    elif certificate is not None and signature is not None:
-        valid, cert = validation(certificate, signature)
-        cc_number = cert.subject.get_attributes_for_oid(NameOID.SERIAL_NUMBER)[0].value[2:]
-
-        # check if the login is valid
-        if valid:
-            user = queries.get_user_by_cc_number(cc_number)
-
-            if not user:
-                return Response({'error': 'Invalid Credentials'}, status=HTTP_404_NOT_FOUND)
-            token, _ = Token.objects.get_or_create(user=user)
-
-            data = {'token': token.key,
-                    'user_type': get_user_type(user.username),
-                    'first_name': user.first_name,
-                    'last_name': user.last_name,
-                    'email': user.username,
-                    }
-
-            try:
-                data['photo_b64'] = Person.objects.get(user=user).photo_b64
-            except:
-                data['photo_b64'] = ""
-
-            # Logs
-            logging.info(" User: " + user.username + " has logged in with auth_token: " + token.key)
-
-
-            return Response(data, status=HTTP_200_OK)
-
-    return  Response(status=HTTP_404_NOT_FOUND)
 
 
 @csrf_exempt

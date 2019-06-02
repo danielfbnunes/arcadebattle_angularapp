@@ -31,7 +31,6 @@ urlpatterns = [
     # Authentication
     path('login', views.login),
     # new
-    path('login_cc', views.login_cc),
     path('logout', views.logout),
 
     # Other important methods
