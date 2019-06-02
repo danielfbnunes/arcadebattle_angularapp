@@ -23,6 +23,7 @@ export class ArcadebattleService {
     }, (response: HttpResponse<any>) => {
       alert('ERROR ' + response.status + ': returning to login');
       localStorage.removeItem('token');
+      window.location.href = 'login';
       return null;
     });
     return response;
@@ -36,6 +37,7 @@ export class ArcadebattleService {
     }, (response: HttpResponse<any>) => {
       alert('ERROR ' + response.status + ': returning to login');
       localStorage.removeItem('token');
+      window.location.href = 'login';
       return null;
     });
     return response;
@@ -49,6 +51,7 @@ export class ArcadebattleService {
     }, (response: HttpResponse<any>) => {
       alert('ERROR ' + response.status + ': returning to login');
       localStorage.removeItem('token');
+      window.location.href = 'login';
       return null;
     });
     return response;
@@ -62,6 +65,7 @@ export class ArcadebattleService {
     }, (response: HttpResponse<any>) => {
       alert('ERROR ' + response.status + ': returning to login');
       localStorage.removeItem('token');
+      window.location.href = 'login';
       return null;
     });
     return response;
@@ -75,6 +79,7 @@ export class ArcadebattleService {
     }, (response: HttpResponse<any>) => {
       alert('ERROR ' + response.status + ': returning to login');
       localStorage.removeItem('token');
+      window.location.href = 'login';
       return null;
     });
     return response;
@@ -88,6 +93,7 @@ export class ArcadebattleService {
     }, (response: HttpResponse<any>) => {
       alert('ERROR ' + response.status + ': returning to login');
       localStorage.removeItem('token');
+      window.location.href = 'login';
       return null;
     });
     return response;
@@ -101,6 +107,7 @@ export class ArcadebattleService {
     }, (response: HttpResponse<any>) => {
       alert('ERROR ' + response.status + ': returning to login');
       localStorage.removeItem('token');
+      window.location.href = 'login';
       return null;
     });
     return response;
@@ -120,6 +127,7 @@ export class ArcadebattleService {
     }, (response: HttpResponse<any>) => {
       alert('ERROR ' + response.status + ': returning to login');
       localStorage.removeItem('token');
+      window.location.href = 'login';
       return null;
     });
     return response;
@@ -133,6 +141,7 @@ export class ArcadebattleService {
     }, (response: HttpResponse<any>) => {
       alert('ERROR ' + response.status + ': returning to login');
       localStorage.removeItem('token');
+      window.location.href = 'login';
       return null;
     });
     return response;
@@ -152,6 +161,7 @@ export class ArcadebattleService {
     }, (response: HttpResponse<any>) => {
       alert('ERROR ' + response.status + ': returning to login');
       localStorage.removeItem('token');
+      window.location.href = 'login';
       return null;
     });
     return response;
@@ -165,6 +175,7 @@ export class ArcadebattleService {
     }, (response: HttpResponse<any>) => {
       alert('ERROR ' + response.status + ': returning to login');
       localStorage.removeItem('token');
+      window.location.href = 'login';
       return null;
     });
     return response;
@@ -178,6 +189,7 @@ export class ArcadebattleService {
     }, (response: HttpResponse<any>) => {
       alert('ERROR ' + response.status + ': returning to login');
       localStorage.removeItem('token');
+      window.location.href = 'login';
       return null;
     });
     return response;
@@ -191,6 +203,7 @@ export class ArcadebattleService {
     }, (response: HttpResponse<any>) => {
       alert('ERROR ' + response.status + ': returning to login');
       localStorage.removeItem('token');
+      window.location.href = 'login';
       return null;
     });
     return response;
@@ -203,7 +216,8 @@ export class ArcadebattleService {
     response.subscribe(() => {
     }, (response: HttpResponse<any>) => {
       alert('ERROR ' + response.status + ': returning to login');
-      localStorage.removeItem('token');
+      localStorage.removeItem('token');window.location.href = 'login';
+
       return null;
     });
     return response;
@@ -217,6 +231,7 @@ export class ArcadebattleService {
     }, (response: HttpResponse<any>) => {
       alert('ERROR ' + response.status + ': returning to login');
       localStorage.removeItem('token');
+      window.location.href = 'login';
       return null;
     });
     return response;
