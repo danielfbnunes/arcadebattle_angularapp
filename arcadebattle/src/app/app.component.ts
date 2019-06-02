@@ -80,7 +80,8 @@ export class AppComponent implements OnInit {
                     this.userData.photoB64 = data.photo_b64;
                     this.imagePath = this.sanitizer.bypassSecurityTrustResourceUrl('data:image/jpg;base64,'
                         + this.userData.photoB64);
-                    localStorage.setItem('current_user', JSON.stringify(this.userData))
+                    localStorage.setItem('current_user', JSON.stringify(this.userData));
+                    window.location.href = 'general_statistics';
                   }
         });
   }

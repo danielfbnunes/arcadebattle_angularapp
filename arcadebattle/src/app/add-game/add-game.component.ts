@@ -15,6 +15,7 @@ export class AddGameComponent implements OnInit {
   previewLink: any;
    */
 
+  state = '';
   data: any;
   // for picture uploading
   reader: any;
@@ -23,6 +24,7 @@ export class AddGameComponent implements OnInit {
   constructor(private arcadeBattleService: ArcadebattleService) { }
 
   ngOnInit() {
+    this.state = '';
   }
 
   handleInputChange(e) {
@@ -48,7 +50,6 @@ export class AddGameComponent implements OnInit {
     this.data.photo_b64 = this.imageSrc.split(',')[1];
 
     this.arcadeBattleService.add_game(this.data).subscribe(data => console.log(data));
-
   }
 
 }

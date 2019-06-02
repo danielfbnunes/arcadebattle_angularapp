@@ -33,12 +33,14 @@ export class AddPatientComponent implements OnInit {
   data: any;
   reader: any;
   imageSrc = '';
+  state = '';
 
   constructor(private arcadeBattleService: ArcadebattleService) {
     this.userType = localStorage.getItem('userType');
   }
 
   ngOnInit() {
+    this.state = '';
   }
 
   handleInputChange(e) {
