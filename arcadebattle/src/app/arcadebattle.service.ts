@@ -117,6 +117,7 @@ export class ArcadebattleService {
 
     add_gesture(data: any): Observable<any> {
       const url = this.baseUrl + 'add_gesture';
+      console.log(data);
       httpOptions.headers = new HttpHeaders({'Content-Type': 'application/json', 'Authorization' : 'Token ' + localStorage.getItem('token')});
       return this.http.post(url, data, httpOptions);
     }
