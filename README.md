@@ -5,15 +5,17 @@
 * REST Api available at http://rdireito.pythonanywhere.com .
 * DoctorInterface available at http://ec2-100-24-34-88.compute-1.amazonaws.com/ .
 
-## WEB INTERFACE - ANGULAR
-
 ## IMPLEMENTED FEATURES
+
+### API'S PROJECT
 
 * **Django Models**: We used django models to create and model entities into a database. Regarding entity relations, we implemented N:M and N:1 relations;
 * **Django Forms**: We implemented all the forms of our web application using Django Forms, since they provide an easier way of accessing data;
 * **Django Authentication**: The mechanisms provided by Django Authentication were widely used to allow different users to log in into your web application;
 * **Django Authorization**: We decided to delimit the areas that each user had access to. This being said, we use Django Authorization mechanisms to make sure that only the allowed users could perform certain operations. For instance, a doctor can only see other doctors, but cannot remove them from the system. Such operation can only be done by an admin.
 * **Django REST Framework**: The mechanisms provided by Django REST Framework allow the creation of a REST API;
+
+### ANGULAR PROJECT
 
 * **Components**: We used components for every view and all the logic associated with it;
 * **Data Binding**: Mostly for showing persistent data, we used data binding;
