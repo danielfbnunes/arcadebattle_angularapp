@@ -90,6 +90,7 @@ runserver.default_port = "<port>"   #9000
 ### 3. On Client's Project:
 
 You need to be on **arcadebattle** folder to run this commands.
+
 | Action | Command |
 | --- | --- |
 | Install all the modules | `npm install` |
