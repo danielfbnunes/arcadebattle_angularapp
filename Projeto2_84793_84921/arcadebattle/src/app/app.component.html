@@ -1,0 +1,217 @@
+<div *ngIf="(!noToken()); else login">
+  <!-- HEADER MOBILE-->
+  <header class="header-mobile d-block d-lg-none">
+    <div class="header-mobile__bar">
+      <div class="container-fluid">
+        <div class="header-mobile-inner">
+          <a class="logo" routerLink="general_statistics">
+            <h2>Arcade Battle</h2>
+          </a>
+          <button class="hamburger hamburger--slider" type="button">
+                              <span class="hamburger-box">
+                                  <span class="hamburger-inner"></span>
+                              </span>
+          </button>
+        </div>
+      </div>
+    </div>
+    <nav class="navbar-mobile">
+      <div class="container-fluid">
+        <ul class="navbar-mobile__list list-unstyled">
+
+        </ul>
+      </div>
+    </nav>
+  </header>
+  <!-- END HEADER MOBILE-->
+
+  <!-- MENU SIDEBAR-->
+  <aside class="menu-sidebar d-none d-lg-block">
+    <div class="logo">
+      <a routerLink="general_statistics">
+        <h2>Arcade Battle</h2>
+      </a>
+    </div>
+    <div class="menu-sidebar__content js-scrollbar1" style="width:100%">
+
+
+
+
+      <nav class="navbar-sidebar">
+        <ul class="list-unstyled navbar__list">
+
+          <li onmouseover="this.firstChild.style.color='#1E90FF'"  onmouseout="this.firstChild.style.color='black'">
+            <a routerLink='general_statistics' style="color: #000;">
+              <i class="fas fa-chart-bar"></i>Statistics
+            </a>
+          </li>
+
+          <expandable-list style="padding: 0px !important;"  *ngIf="(userData.userType == 'admin')">
+            <expandable-list-item  style="padding: 0px !important;" >
+              <span title onmouseover="this.style.color='#1E90FF'"  onmouseout="this.style.color='black'">  <i class="fas fa-unlock-alt" style="margin-right:19px; padding: 0px !important;"></i>Admins</span>
+
+              <a  item routerLink="all_admins" style="margin-left: 20px"x>
+                <i class="fas fa-align-left" style="margin-right:15px"></i>
+                All Admins
+              </a>
+              <a item routerLink="add_admin" style="margin-left: 20px">
+                <i class="fas fa-plus" style="margin-right:15px"></i>
+                Add Admin
+              </a>
+            </expandable-list-item>
+          </expandable-list>
+
+
+
+          <expandable-list style="padding: 0px !important;"  *ngIf="(userData.userType == 'admin')">
+            <expandable-list-item  style="padding: 0px !important;">
+              <span title onmouseover="this.style.color='#1E90FF'"  onmouseout="this.style.color='black'">  <i class="fas fa-medkit" style="margin-right:19px; padding: 0px !important;"></i>Doctors</span>
+
+              <a  item routerLink="all_doctors" style="margin-left: 20px" >
+                <i class="fas fa-align-left" style="margin-right:15px"></i>
+                All Doctors
+              </a>
+              <a item routerLink="add_doctor" style="margin-left: 20px">
+                <i class="fas fa-plus" style="margin-right:15px"></i>
+                Add Doctor
+              </a>
+            </expandable-list-item>
+          </expandable-list>
+
+
+          <li *ngIf="(userData.userType == 'doctor')" [attr.class]="(this.router.url == 'all_doctors')?'active':null" onmouseover="this.firstChild.style.color='#1E90FF'"  onmouseout="this.firstChild.style.color='black'">
+            <a routerLink="all_doctors"><i class="fas fa-align-left"></i>All Doctors</a>
+          </li>
+
+
+          <expandable-list style="padding: 0px !important;"  *ngIf="(userData.userType == 'admin' || userData.userType == 'doctor')">
+            <expandable-list-item  style="padding: 0px !important;">
+              <span title onmouseover="this.style.color='#1E90FF'"  onmouseout="this.style.color='black'">  <i class="fas fa-address-book" style="margin-right:19px; padding: 0px !important;"></i>Patients</span>
+
+              <a  item routerLink="all_patients" style="margin-left: 20px">
+                <i class="fas fa-align-left" style="margin-right:15px"></i>
+                All Patients
+              </a>
+              <a item routerLink="add_patient" style="margin-left: 20px">
+                <i class="fas fa-plus" style="margin-right:15px"></i>
+                Add Patient
+              </a>
+            </expandable-list-item>
+          </expandable-list>
+
+
+
+
+
+          <expandable-list style="padding: 0px !important;" *ngIf="(userData.userType == 'admin'); else elseGames">
+            <expandable-list-item  style="padding: 0px !important;">
+              <span title onmouseover="this.style.color='#1E90FF'"  onmouseout="this.style.color='black'">  <i class="fas fa-gamepad" style="margin-right:19px; padding: 0px !important;"></i>Games</span>
+
+              <a  item routerLink="all_games"  style="margin-left: 20px">
+                <i class="fas fa-align-left" style="margin-right:15px"></i>
+                All Games
+              </a>
+              <a item routerLink="add_game" style="margin-left: 20px">
+                <i class="fas fa-plus" style="margin-right:15px"></i>
+                Add Game
+              </a>
+            </expandable-list-item>
+          </expandable-list>
+          <ng-template #elseGames>
+            <li [attr.class]="(this.router.url == 'all_games')?'active':null">
+              <a routerLink="all_games"><i class="fas fa-align-left"></i>All Games</a>
+            </li>
+          </ng-template>
+        </ul>
+      </nav>
+    </div>
+  </aside>
+  -->
+  <!-- END MENU SIDEBAR-->
+
+  <!-- PAGE CONTAINER-->
+  <div class="page-container">
+    <!-- HEADER DESKTOP-->
+    <header class="header-desktop">
+      <div class="section__content section__content--p30">
+        <div class="container-fluid">
+          <div class="header-wrap">
+            <div class="header-button">
+
+
+              <div class="account-wrap">
+                <div class="account-item clearfix ">
+                  <div class="image">
+                    <img [src]="imagePath" />
+                  </div>
+                  <div class="content">
+                    <a class="js-acc-btn" routerLink="about" >{{ userData.firstName }} {{ userData.lastName }}</a>
+                    <button onclick="window.location.href='about' "type="button" class="btn-sm btn-primary"  style="margin-left:7px;">
+                      <i class="fas fa-edit"></i>
+                    </button>
+                    <button (click)="logout()" type="button" class="btn-sm btn-danger" style="margin-left:7px;">
+                      <i class="fas fa-power-off"></i>
+                    </button>
+                  </div>
+
+
+
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+    <!-- END HEADER DESKTOP-->
+
+    <!-- MAIN CONTENT-->
+    <div class="main-content">
+      <router-outlet></router-outlet>
+      <!--
+      <p>{{ request.session.doctor }}</p>
+      {% block content %}
+      {% endblock %}
+      -->
+    </div>
+    <!-- END MAIN CONTENT-->
+  </div>
+</div>
+<ng-template #login>
+  <div class="page-content--bge5">
+    <div class="container">
+      <div class="login-wrap">
+        <div class="login-content">
+          <div class="login-form">
+            <form (ngSubmit)="loginFunc()">
+              <div class="form-group">
+                <!--
+                <label>Email Address</label>
+                <input class="au-input au-input--full" type="email" name="email" placeholder="Email">
+                -->
+                <label for="id_username" class="active">Username:</label>
+                <input [(ngModel)]="username" type="text" name="username" id="id_username" class="au-input au-input--full">
+              </div>
+              <div class="form-group">
+                <!--
+                <label>Password</label>
+                <input class="au-input au-input--full" type="password" name="password" placeholder="Password">
+                -->
+                <label for="id_password">Password:</label>
+                <input [(ngModel)]="password" type="password" name="password" id="id_password" class="au-input au-input--full">
+              </div>
+              <div class="login-checkbox">
+                <label>
+                  <a href="#">Forgotten Password?</a>
+                </label>
+              </div>
+              <button class="au-btn au-btn--block au-btn--green m-b-20" type="submit" style="background-color: rgb(0, 123, 255)"> sign in</button>
+              <!--<input type="submit" class="au-btn au-btn--block au-btn--green m-b-20" name="cc_btn" value="sign in with cc">-->
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>
